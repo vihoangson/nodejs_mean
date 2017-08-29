@@ -1,23 +1,20 @@
 var express = require('express');
 var app = express();
-var port = 3000;
+var port = 1888;
 var mongoose = require('mongoose');
 var morgan = require('morgan');
-var User = require('./app/models/user');
-var path = require('path');
 var bodyParser = require('body-parser');
-var routes = express.Router();
-var appRoutes = require('./app/routes/api')(routes);
-
-app.use(express.static('public'));
-
-mongoose.Promise = global.Promise;
+var router = express.Router();
+var appRoutes = require('./app/routes/api')(router);
+var path = require('path');
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(__dirname + '/public'));
 app.use('/api', appRoutes);
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/tutorial', {
     useMongoClient: true
 }, function (err) {
@@ -29,7 +26,7 @@ mongoose.connect('mongodb://localhost:27017/tutorial', {
     }
 });
 
-app.get('*',function(req,res){
+app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname+'/public/app/views/index.html'));
 });
 
