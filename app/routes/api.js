@@ -11,9 +11,9 @@ module.exports = function (route) {
             user.email = req.body.email;
             user.save(function (err) {
                 if (err) {
-                    res.send(err);
+                    res.json({success:false,message: 'Username or Email already exits!'});
                 } else {
-                    res.send('user created');
+                    res.json({success:true,message: 'User created'});
                 }
             });
         }
