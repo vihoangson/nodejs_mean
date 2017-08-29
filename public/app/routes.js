@@ -7,12 +7,11 @@ angular.module('appRoutes', ['ngRoute'])
             .when('/about', {
                 templateUrl: 'app/views/pages/about.html'
             })
-                // ,
-                // .when('/register', {
-                //     templateUrl: 'app/views/pages/registration.html',
-                //     controller:'regCtrl',
-                //     controllerAs: 'register'
-                // })
+            .when('/register', {
+                templateUrl: 'app/views/pages/registration.html',
+                controller:'regCtrl',
+                controllerAs: 'register'
+            })
             .otherwise({redirecTo: ('/')})
         ;
     });
