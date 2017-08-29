@@ -1,5 +1,5 @@
 angular.module('appRoutes', ['ngRoute'])
-    .config(function ($routeProvider, $locationProvider) {
+    .config(function ( $locationProvider,$routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'app/views/pages/home.html'
@@ -7,11 +7,6 @@ angular.module('appRoutes', ['ngRoute'])
             .when('/about', {
                 templateUrl: 'app/views/pages/about.html'
             })
-        //    .otherwise({redirecTo:('/')})
+            .otherwise({redirecTo: ('/')})
         ;
-        $locationProvider.html5Mode({
-            enable: true,
-            requireBase: false
-        });
-
     });
