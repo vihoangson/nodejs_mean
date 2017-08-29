@@ -9,6 +9,8 @@ var bodyParser = require('body-parser');
 var routes = express.Router();
 var appRoutes = require('./app/routes/api')(routes);
 
+app.use(express.static('public'));
+
 mongoose.Promise = global.Promise;
 
 app.use(morgan('dev'));
