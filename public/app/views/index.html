@@ -22,10 +22,13 @@
     <script src="/app/app.js"></script>
     <script src="/app/routes.js"></script>
     <script src="/app/controllers/userCtrl.js"></script>
+    <script src="/app/controllers/mainCtrl.js"></script>
+
     <script src="/app/services/userServices.js"></script>
+    <script src="/app/services/authServices.js"></script>
     <![endif]-->
 </head>
-<body ng-app="userApp">
+<body ng-app="userApp" ng-controller="mainCtrl as main">
 
 <div class="container">
     <nav class="navbar navbar-default" role="navigation">
@@ -45,6 +48,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/#!about">About</a></li>
                     <li class="active"><a href="/#!register">Registration</a></li>
+                    <li class="active"><a href="/#!login">Login</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>

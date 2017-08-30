@@ -19,6 +19,26 @@ module.exports = function (route) {
         }
     });
 
+    route.post('/authenticate', function (req, res) {
+        if(req.body.username == null || req.body.username == ''){
+            res.json({success:false,message:'Don\'t have username'});
+        }else{
+            User.findOne({username: req.body.username}).select('email password username').exec(function(err,user){
+                if(err) throw err;
+                if(!user){
+                    res.json({success:false,message:'Error login'});
+                }else if(user){
+                    var validPassword = user.comparePassword(req.body.password);
+
+                    if(validPassword==true){
+                        res.json({success:true,message:'Success login'});
+                    }else{
+                        res.json({success:false,message:'Error login'});
+                    }
+                }
+            });
+        }
+    });
 
     return route;
 }

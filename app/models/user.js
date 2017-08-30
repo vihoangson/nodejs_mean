@@ -25,4 +25,13 @@ if (false)
 
     });
 
+
+UserSchema.methods.comparePassword = function (password) {
+    if (password == this.password) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 module.exports = mongoose.model('User', UserSchema);
