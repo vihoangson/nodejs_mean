@@ -1,4 +1,6 @@
 var User = require('../models/user');
+var jwt = require('jsonwebtoken');
+var secret_string = 'sondeptrai';
 
 module.exports = function (route) {
     route.post('/users', function (req, res) {
@@ -31,7 +33,12 @@ module.exports = function (route) {
                     var validPassword = user.comparePassword(req.body.password);
 
                     if(validPassword==true){
-                        res.json({success:true,message:'Success login'});
+                        var token = jwt.sign({
+                            username: req.body.username,
+                            email: req.body.email
+                        }, secret_string, {expiresIn: '2h'})
+                        res.json({success: true, message: 'Success login', token: token});
+
                     }else{
                         res.json({success:false,message:'Error login'});
                     }
