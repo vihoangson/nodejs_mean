@@ -13,10 +13,13 @@ angular.module('appRoutes', ['ngRoute'])
                 controllerAs: 'register'
             })
             .when('/login', {
-                templateUrl: 'app/views/pages/login.html',
-                controller:'mainCtrl',
-                controllerAs: 'main'
+                templateUrl: 'app/views/pages/login.html'
             })
+            .when('/logout', {
+                templateUrl: 'app/views/pages/logout.html'
+            })
+
+
             .otherwise({redirecTo: ('/')})
         ;
     });

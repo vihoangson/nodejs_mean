@@ -1,5 +1,5 @@
 angular.module('authServices',[])
-    .factory('Auth', function ($http, AuthToken) {
+    .factory('Auth', function ($http, AuthToken,$window) {
         authFactory = {};
         authFactory.login = function(loginData){
             return $http.post('/api/authenticate', loginData).then(function (data) {
@@ -15,6 +15,12 @@ angular.module('authServices',[])
                 return false;
             }
         }
+
+        // Auth.logout();
+        authFactory.logout = function(){
+            $window.localStorage.removeItem('token');
+        }
+
         return authFactory;
     })
     .factory('AuthToken', function ($window) {
@@ -29,6 +35,8 @@ angular.module('authServices',[])
         authTokenFactory.getToken = function () {
             return $window.localStorage.getItem('token');
         }
+
+
 
         return authTokenFactory;
     })
