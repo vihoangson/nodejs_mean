@@ -1,4 +1,4 @@
-angular.module('mainControllers', ['authService'])
+angular.module('mainControllers', ['authServices'])
     .controller('mainCtrl', function ($http, $location, $timeout, Auth) {
         var app = this;
         this.dologin = function (loginData) {
