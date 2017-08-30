@@ -1,4 +1,4 @@
-angular.module('authServices',[]).config(function(){alert(1);})
+angular.module('authServices',[])
     .factory('Auth',function($http){
         authFactory = {};
         authFactory.login = function(loginData){

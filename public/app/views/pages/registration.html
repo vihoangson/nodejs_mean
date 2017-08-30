@@ -1,9 +1,7 @@
 <div class="page-header">
     <h1>User registration</h1>
 </div>
-<div ng-show="register.loading">
-    Loading...
-</div>
+
 <form ng-submit="register.regUser(regData)">
     <div>
         <label for="username"> Username</label>
@@ -20,7 +18,10 @@
     </div>
 </form>
 
+<div ng-show="register.loading">
+    Loading...
+</div>
 <br>
-    <div ng-show="register.successMsg" class="show-hide-message ng-hide-remove alert alert-success">{{register.successMsg}}</div>
+    <div ng-show="register.flag_successMsg" class="show-hide-message ng-hide-remove alert alert-success">{{register.successMsg}}</div>
     <br>
-    <div ng-show="register.errorMsg" class="show-hide-message ng-hide-remove alert alert-danger">{{register.errorMsg}}</div>
+    <div ng-show="register.flag_errorMsg" class="show-hide-message ng-hide-remove alert alert-danger">{{register.errorMsg}}</div>
