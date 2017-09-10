@@ -1,5 +1,5 @@
 angular.module('authServices',[])
-    .factory('Auth', function ($http, AuthToken,$window) {
+    .factory('Auth', function ($http, AuthToken,$window,$location ) {
         authFactory = {};
         // Auth.login();
         authFactory.login = function(loginData){
@@ -30,6 +30,7 @@ angular.module('authServices',[])
         // Auth.logout();
         authFactory.logout = function(){
             $window.localStorage.removeItem('token');
+            $location.path("/about");
         }
 
         return authFactory;

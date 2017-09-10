@@ -46,11 +46,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/#!about">About</a></li>
-                    <li class="active"><a href="/#!register">Registration</a></li>
-                    <li class="active"><a href="/#!login">Login</a></li>
-                    <li class="active"><a href="/#!logout" ng-click="main.logout()">Logout</a></li>
-                    <li class="active"><a href="" ng-click="">Hello {{main.username}}</a></li>
+                    <li class=""><a href="/#!about">About</a></li>
+                    <li class=""><a href="/#!register">Registration</a></li>
+                    <li class="" ng-show="!main.isLoggedIn"><a href="/#!login">Login</a></li>
+                    <li class="" ng-show="main.isLoggedIn"><a href="/#!logout" ng-click="main.logout()">Logout</a></li>
+                    <li class="" ng-show="main.isLoggedIn"><a href="/#!profile">Hello {{main.username}}</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
