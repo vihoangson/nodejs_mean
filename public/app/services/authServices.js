@@ -1,6 +1,7 @@
 angular.module('authServices',[])
     .factory('Auth', function ($http, AuthToken,$window) {
         authFactory = {};
+        // Auth.login();
         authFactory.login = function(loginData){
             return $http.post('/api/authenticate', loginData).then(function (data) {
                 AuthToken.setToken(data.data.token);
@@ -8,11 +9,21 @@ angular.module('authServices',[])
             })
         }
 
+        // Auth.isLoggedIn();
         authFactory.isLoggedIn = function () {
             if (AuthToken.getToken()) {
                 return true;
             } else {
                 return false;
+            }
+        }
+
+        // Auth.getUser();
+        authFactory.getUser = function(){
+            if(AuthToken.getToken()){
+                return $http.post('api/me');
+            }else{
+                $q.reject({message:'User has no token'});
             }
         }
 
@@ -23,6 +34,8 @@ angular.module('authServices',[])
 
         return authFactory;
     })
+
+
     .factory('AuthToken', function ($window) {
         var authTokenFactory = {};
 
@@ -36,9 +49,17 @@ angular.module('authServices',[])
             return $window.localStorage.getItem('token');
         }
 
-
-
         return authTokenFactory;
+    })
+
+    .factory('AuthInterceptors',function(AuthToken) {
+            var authInterceptorsFactory = {};
+            authInterceptorsFactory.request = function(config){
+                var token = AuthToken.getToken();
+                if(token) config.headers['x-access-token'] = token;
+                return config;
+            }
+            return authInterceptorsFactory;
     })
 
 ;

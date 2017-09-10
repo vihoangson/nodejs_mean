@@ -3,6 +3,9 @@ angular.module('mainControllers', ['authServices'])
         var app = this;
         if(Auth.isLoggedIn()){
             console.log('Success login');
+            Auth.getUser().then(function(data){
+                console.log(data);
+            })
         }else{
             console.log('Failure login');
         }
